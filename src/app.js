@@ -12,9 +12,13 @@ dotenv.config({ quiet: true });
 app.use(morgan("dev"));
 app.use(express.json());
 
-//Routes
+//Ruta raiz
 app.use("/", mainRouter);
+
+//Rutas de usuarios
 app.use("/api", userRouter);
+
+//Rutas de productos
 app.use("/api", productsRouter);
 
 export default app;
