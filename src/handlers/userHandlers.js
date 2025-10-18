@@ -9,4 +9,18 @@ const getIdUser = (req, res) => {
   res.send(`User by ID: ${id}`);
 };
 
-export { getAllUsers, getIdUser };
+const createUser = (req, res) => {
+  const { name } = req.body;
+  res.send(`Create user: ${name}`);
+};
+
+const editUser = (req, res) => {
+  const { id } = req.params;
+  res.send(`Edit user: ${id}`);
+};
+
+const deleteUser = (req, res) => {
+  const { id } = req.params;
+  res.send(`delete user: ${id}`);
+};
+export { getAllUsers, getIdUser, createUser, editUser, deleteUser };

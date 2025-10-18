@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mainRouter from "./routes/mainRoute.js";
 import userRouter from "./routes/userRoutes.js";
 import productsRouter from "./routes/productsRoutes.js";
+import pageNotFoundHandler from "./handlers/pageNoFound.js";
 
 const app = express();
 
@@ -20,5 +21,8 @@ app.use("/api", userRouter);
 
 //Rutas de productos
 app.use("/api", productsRouter);
+
+//Página de error 404
+app.use(pageNotFoundHandler)
 
 export default app;
