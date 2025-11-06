@@ -1,51 +1,51 @@
 import {
   createUserControllers,
-  readUsersControllers,
+  allUsersControllers,
   editUserControllers,
+  userByNameControllers,
   userByIdControllers,
   deleteUserControllers,
 } from "../controllers/userControllers.js";
-import users from "../db/dataBases.js";
 
-//trae todos los usuarios
+//trae todos los usuarios y usuario por name
 const getAllUsers = (req, res) => {
-  try {
-    const allUsers = readUsersControllers();
-    res.json(allUsers);
-  } catch {
-    res.status(500).send("Error al obtener los usuarios");
+  const { name } = req.query;
+  if (name) {
+    const response = userByNameControllers(name);
+    res.send(response);
+  } else {
+    const response = allUsersControllers();
+    res.send(response);
   }
 };
 
 //trae usuario por id
-const getIdUser = (req, res) => {
+const userById = (req, res) => {
   const { id } = req.params;
-  try {
-    userByIdControllers(id);
-    const { name, userName } = userByIdControllers(id);
-    res.send(`User: ${id} - ${name} - ${userName}`);
-  } catch (error) {
-    res.status(404).send(error.message);
-}};
+  const response = userByIdControllers(id);
+  res.send(response);
+};
 
+//crea un usuario
 const createUser = (req, res) => {
   const { name, userName } = req.body;
   createUserControllers(name, userName);
-  res.send(`${name} - ${userName}`);
+  res.send(`usuario creado con éxito`);
 };
 
+//edita un usuario
 const editUser = (req, res) => {
   const { id } = req.params;
-  editUserControllers(id);
-  const { name, userName } = editUserControllers(id);
-  res.send(`Edit user: ${id} - ${name} - ${userName}`);
+  const { name, userName } = req.body;
+  editUserControllers(id, name, userName);
+  res.send(`usuario editado con éxito`);
 };
 
+//elimina un usuario
 const deleteUser = (req, res) => {
   const { id } = req.params;
-  deleteUserControllers(id);
-  const { name, userName } = deleteUserControllers(id);
-  res.send(`Delete: ${name} ${userName}`);
+  const response = deleteUserControllers(id);
+  res.send(response);
 };
 
-export { getAllUsers, getIdUser, createUser, editUser, deleteUser };
+export { getAllUsers, createUser, userById, editUser, deleteUser };

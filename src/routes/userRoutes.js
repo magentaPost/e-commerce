@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { createUser, getAllUsers, getIdUser, editUser, deleteUser } from "../handlers/userHandlers.js";
+import { createUser, getAllUsers, userById, editUser, deleteUser } from "../handlers/userHandlers.js";
 
 const userRouter = Router();
 
 // Ruta users
 //get
 userRouter.get("/users", getAllUsers);
-userRouter.get("/users/:id", getIdUser);
+userRouter.get("/users/:id", userById);
 
 //Post
 userRouter.post("/users", createUser);

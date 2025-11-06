@@ -1,33 +1,45 @@
 import users from "../db/dataBases.js";
 
-export const readUsersControllers = () => {
-  const AllUsers = users.map((user) => {
+export const allUsersControllers = () => {
+  const allUsers = users.map((user) => {
     return user;
   });
-  console.log(AllUsers);
-  return AllUsers;
+  return allUsers;
+};
+
+export const userByNameControllers = (name) => {
+  const user = users.filter(
+    (user) => user.name.toLowerCase() === name.toLowerCase()
+  );
+  return user;
 };
 
 export const userByIdControllers = (id) => {
   const user = users.find((user) => user.id === parseInt(id));
-  console.log(user.name);
   return user;
 };
 
 export const createUserControllers = (name, userName) => {
   const id = users.length + 1;
   const newUser = { id, name, userName };
-  console.log(newUser);
+  users.push(newUser);
+  return newUser;
 };
 
 export const editUserControllers = (id, name, userName) => {
+  const newUser = { id, name, userName };
   const user = users.find((user) => user.id === parseInt(id));
-  console.log(user.name);
-  return user;
+  if (user !== -1) {
+    Object.assign(user, newUser);
+  }
+  return user
 };
 
 export const deleteUserControllers = (id, name, userName) => {
-  const user = users.find((user) => user.id === parseInt(id));
-  console.log(user.name);
-  return user;
+  const index = users.findIndex((user) => user.id === parseInt(id));
+  let deleteUser;
+  if (index !== -1) {
+    [deleteUser] = users.splice(index, 1);
+  }
+  return deleteUser;
 };
