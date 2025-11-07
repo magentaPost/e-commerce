@@ -1,4 +1,6 @@
-import users from "../db/dataBases.js";
+import data from "../db/dataBases.js";
+
+const users = data.users;
 
 export const allUsersControllers = () => {
   if (users.length === 0) {
