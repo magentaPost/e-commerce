@@ -1,11 +1,11 @@
 import {
-  createUserControllers,
   allUsersControllers,
   editUserControllers,
   userByNameControllers,
   userByIdControllers,
   deleteUserControllers,
 } from "../controllers/userControllers.js";
+
 
 //trae todos los usuarios y usuario por name
 const getAllUsers = (req, res) => {
@@ -34,17 +34,6 @@ const userById = (req, res) => {
   }
 };
 
-//crea un usuario
-const createUser = (req, res) => {
-  try {
-    const { name, userName } = req.body;
-    createUserControllers(name, userName);
-    res.send(`usuario creado con éxito`);
-  } catch (error) {
-    res.status(404).send({ error: error.message });
-  }
-};
-
 //edita un usuario
 const editUser = (req, res) => {
   try {
@@ -68,4 +57,4 @@ const deleteUser = (req, res) => {
   }
 };
 
-export { getAllUsers, createUser, userById, editUser, deleteUser };
+export { getAllUsers, userById, editUser, deleteUser };

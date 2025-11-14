@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUser, getAllUsers, userById, editUser, deleteUser } from "../handlers/userHandlers.js";
+import { getAllUsers, userById, editUser, deleteUser } from "../handlers/userHandlers.js";
 
 const userRouter = Router();
 
@@ -7,9 +7,6 @@ const userRouter = Router();
 //get
 userRouter.get("/users", getAllUsers);
 userRouter.get("/users/:id", userById);
-
-//Post
-userRouter.post("/users", createUser);
 
 //Put
 userRouter.put("/users/:id", editUser);

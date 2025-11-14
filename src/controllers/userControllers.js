@@ -32,13 +32,6 @@ export const userByIdControllers = (id) => {
   return user;
 };
 
-export const createUserControllers = (name, userName) => {
-  const id = users.length + 1;
-  const newUser = { id, name, userName };
-  users.push(newUser);
-  return newUser;
-};
-
 export const editUserControllers = (id, name, userName) => {
   const newUser = { id, name, userName };
   const user = users.find((user) => user.id === parseInt(id));
@@ -48,7 +41,7 @@ export const editUserControllers = (id, name, userName) => {
   return user;
 };
 
-export const deleteUserControllers = (id, name, userName) => {
+export const deleteUserControllers = (id) => {
   const index = users.findIndex((user) => user.id === parseInt(id));
   let deleteUser;
   if (index !== -1) {

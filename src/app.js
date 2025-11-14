@@ -3,6 +3,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import mainRouter from "./routes/mainRoute.js";
 import userRouter from "./routes/userRoutes.js";
+import authRouter from "./routes/authRoute.js";
 import productsRouter from "./routes/productsRoutes.js";
 import pageNotFoundHandler from "./handlers/pageNoFound.js";
 
@@ -15,6 +16,9 @@ app.use(express.json());
 
 //Ruta raiz
 app.use("/", mainRouter);
+
+//Rutas de autenticación
+app.use("/auth", authRouter);
 
 //Rutas de usuarios
 app.use("/api", userRouter);
